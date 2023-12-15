@@ -37,7 +37,7 @@ const SingleBook = ({ bookList }) => {
         <div>
             <h1>{book.title}</h1>
             <h2>{book.author}</h2>
-            <button onClick={handleCheckout}>Check out Book</button>
+            {book.available === true ? <button onClick={handleCheckout}>Check out Book</button> : null}
             <br />
             <br />
             <img src={book.coverimage} />
