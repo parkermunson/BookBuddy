@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import bookLogo from './assets/books.png'
 import { Routes, Route, Link } from 'react-router-dom'
 import Navigations from "./components/Navigations"
 import Books from './components/Books'
@@ -10,8 +9,11 @@ import Register from './components/Register'
 import Account from './components/Account'
 import SuccessRegi from './components/SuccessRegi'
 import Homepage from './components/Homepage'
+import BookCarousel from './BookCarousel';
 
-function App() {
+
+
+function App({ books }) {
   const [token, setToken] = useState(null)
   const [user, setUser] = useState({})
   const [bookList, setBookList] = useState([])
@@ -53,8 +55,9 @@ useEffect(() => {
 
 return (
   <>
-    <h1><img id='logo-image' src={bookLogo} /><Link to='/'>Library App</Link></h1>
+    <h1 id="app-title"><Link to='/'>Classics</Link></h1>
     <Navigations user={user} />
+    <BookCarousel books={books} />
     <Routes>
       <Route path='/' element={<Homepage />} />
       <Route path='/successReg' element={<SuccessRegi />} />

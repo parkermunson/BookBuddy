@@ -1,8 +1,22 @@
+@font-face {
+  font-family: 'Granville';
+  src: url("https://use.typekit.net/rsd3shz.css");
+}
+
+@font-face {
+  font-family: 'Sloop-Script-Two';
+  src: url("https://use.typekit.net/rsd3shz.css");
+}
+
+@font-face {
+  font-family: 'prestige-elite-std';
+  src: url("https://use.typekit.net/rsd3shz.css");
+}
+
 body {
-  font-family: Georgia, serif;
-  background-color: #f8f8f8;
-  margin: 0;
-  padding: 0;
+  font-family: 'prestige-elite-std';
+  color: white;
+  background-color: rgb(31,45,34);
 }
 
 #logo-image {
@@ -10,12 +24,25 @@ body {
   margin-right: 10px;
 }
 
+#app-title {
+  font-family: 'Sloop-Script-Two';
+  color: white;
+  text-align: center;
+}
+
 /* Add your own custom styles here */
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 nav{
+  font-family: 'Granville';
   display: flex;
   justify-content: space-around;
-  background-color: lightgreen;
+  color: white;
+  background-color:rgb(94, 68, 42);
 }
 
 nav span{
@@ -24,6 +51,8 @@ nav span{
 }
 
 nav a{
+  color: white;
+  text-decoration: none;
   padding: 1rem;
 }
 
