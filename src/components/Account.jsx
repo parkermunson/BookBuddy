@@ -21,6 +21,8 @@ const Account = ({ user, setUser, setToken }) => {
                     }
                 })
                 setReservations(response.data.reservation)
+                console.log(response.data.reservation)
+
             } catch (error) {
                 console.log('An error occurred while trying to get your reservations:', error.message)
             }
@@ -39,27 +41,34 @@ const Account = ({ user, setUser, setToken }) => {
         return null
     }
 
+
     const handleBookReturn = async (reservationId) => {
         const loggedInToken = window.localStorage.getItem('token')
+
         try {
             const response = await axios.delete(`https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations/${reservationId}`,
-                {},
-                {
+            {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${loggedInToken}`
                     }
                 })
+                console.log(response.data)
 
-            setReservations(response.data.reservation)
-            console.log('Book returned successfully:', response.data.reservation);
-        } catch (error) {
-            console.error('An error occurred while trying to return the book:', error.message);
+                if (response.data.deletedReservation) {
+                    setReservations((prevReservations) => {
+                        return prevReservations.filter(reservation => reservation.id !== reservationId);
+                    })
+            console.log('Book returned successfully');
+        } else {
+            console.error('Unexpected response format after returning the book:', response.data);
         }
-
+    } catch (error) {
+        console.error('An error occurred while trying to return the book:', error.message);
     }
+};
 
-    if (!user.books) {
+    if (!user.books || !reservations) {
         return null;
     }
 
@@ -71,6 +80,7 @@ const Account = ({ user, setUser, setToken }) => {
             <hr />
             <h2>Email: {user.email}</h2>
             <h4>Your Reservations: </h4>
+            {reservations.length > 0 ? (
             <ul>
                 {reservations.map((book) => (
                     <li key={book.id}>
@@ -79,6 +89,10 @@ const Account = ({ user, setUser, setToken }) => {
                     </li>
                 ))}
             </ul>
+            ) : (
+                <p>Your reservations are empty!</p>
+            )}
+
         </div>
     )
 }

@@ -1,9 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
+import { useState } from 'react'
 import axios from 'axios'
 
 const SingleBook = ({ bookList }) => {
     const params = useParams()
     const bookId = params.id * 1
+
+    const [isCheckedOut, setIsCheckedOut ] = useState(false)
 
     const book = bookList.find((book) => {
         return book.id === bookId
@@ -27,6 +30,7 @@ const SingleBook = ({ bookList }) => {
                     }
                 }
             );
+            setIsCheckedOut(true)
             console.log('Booked checked out successfully!')
         } catch (error) {
             console.log('An erorr occurred during checkout', error.message);
@@ -37,17 +41,22 @@ const SingleBook = ({ bookList }) => {
         <div>
             <h1>{book.title}</h1>
             <h2>{book.author}</h2>
-            {book.available === true ? <button onClick={handleCheckout}>Check out Book</button> : null}
+            {isCheckedOut ? (
+                <p>Book Checked Out Successfully!</p>
+            ) : (
+                book.available === true && (
+                    <button onClick={handleCheckout}>Check out Book</button>
+                )
+            )}
             <br />
             <br />
-            <img src={book.coverimage} />
+            <img src={book.coverimage} alt={`Cover of ${book.title}`} />
             <p>{book.description}</p>
             <button>
                 <Link to='/books'>Back to all Books</Link>
             </button>
         </div>
-    )
+    );
+};
 
-}
-
-export default SingleBook
+export default SingleBook;

@@ -1,15 +1,16 @@
 import { useState } from "react"
+import { Link } from 'react-router-dom'
 
-const SearchBar = (books) => {
+const SearchBar = ({bookList}) => {
     const [ searchTerm, setSearchTerm ] = useState('')
 
-    const filteredTerms = books.filter((book) => {
+    const filteredTerms = bookList.filter((book) => {
         return book.title.indexOf(searchTerm) !== -1
     })
 
 return (
     <div>
-        <h3>Serach for a book:</h3>
+        <h3>Search for a book:</h3>
         <label>
             <input
                 type="text"
@@ -20,20 +21,28 @@ return (
         {
             searchTerm.length > 0 ?
             <div>
-                <h3> Viewing {filteredTerms.length} or {books.length} </h3>
+                <h3> Viewing {filteredTerms.length} of {bookList.length} </h3>
                 <ul>
                     {
                         filteredTerms.map((book) => {
-                            return <li key={book.id}> {book.title} </li>
+                            return (
+                                <li key={book.id}> 
+                                <Link to={`/books/${book.id}`}>
+                                {book.title}    
+                                </Link>  
+                                </li>      
+                            ) 
                         })
                     }
                 </ul>
             </div>
 
             : null
-            
+
         }
     </div>
 )
 
 }
+
+export default SearchBar
