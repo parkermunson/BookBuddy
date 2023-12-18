@@ -7,7 +7,7 @@ const Books = ({bookList}) => {
     return(
         <div className="books-container">
 
-            <h1>Library</h1>
+            <h1 id="library-title">Library</h1>
             <p id="textbox">Scroll to browse our selection of classic literature,<br/> or use the search bar if you know what you're looking for.</p>
             <SearchBar bookList={bookList} />
             <ul className="books-list">

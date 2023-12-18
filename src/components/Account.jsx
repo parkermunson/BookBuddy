@@ -81,12 +81,15 @@ const Account = ({ user, setUser, setToken }) => {
             <h2>{user.email}</h2>
             <button className="logout-button" onClick={() => { logout() }}>Logout</button>
             <hr />
+            <div className="reservations-container">
             <h1 className="my-account">Your Reservations: </h1>
             {reservations.length > 0 ? (
-            <ul>
+            <ul className="reservations-list">
                 {reservations.map((book) => (
-                    <li key={book.id}>
-                        <p>{book.title}</p>
+                    <li className="reservations-item" key={book.id}>
+                        <img src={book.coverimage} className="book-cover"/>
+                        <h3 className="reservation-book-title">{book.title} | </h3>
+                        <p>{book.author}</p>
                         <button className="return-button" onClick={() => handleBookReturn(book.id)}>Return Book</button>
                     </li>
                 ))}
@@ -94,6 +97,7 @@ const Account = ({ user, setUser, setToken }) => {
             ) : (
                 <p>Your reservations are empty!</p>
             )}
+            </div>
             <hr />
 
         </div>

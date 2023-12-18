@@ -28,7 +28,7 @@ const Login = ({setToken}) => {
     }
 
     return(
-        <div>
+        <div className="logInForm">
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:

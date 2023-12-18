@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom"
+import React from "react"
 
 const Homepage = () => {
+    const user = window.localStorage.getItem('token')
+    console.log(user)
+
     return (
+        <div>
+            {user ? <h3 id="welcome-message">Welcome fellow reader!</h3> : null}
         <div className="homepage-image-container">
+            
             <img className="homepage-image" src="src/assets/homepageImg.jpeg" />
 
             <h1 id="tagline">BOOKS YOU PROBABLY SHOULD HAVE READ BY NOW</h1>
@@ -14,7 +21,7 @@ const Homepage = () => {
                     <Link to='/books'>START READING</Link>
                 </button>
             </div>
-
+        </div>
         </div>
     )
 }
