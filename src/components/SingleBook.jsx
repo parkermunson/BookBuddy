@@ -6,7 +6,7 @@ const SingleBook = ({ bookList }) => {
     const params = useParams()
     const bookId = params.id * 1
 
-    const [isCheckedOut, setIsCheckedOut ] = useState(false)
+    const [isCheckedOut, setIsCheckedOut] = useState(false)
 
     const book = bookList.find((book) => {
         return book.id === bookId
@@ -38,23 +38,31 @@ const SingleBook = ({ bookList }) => {
     }
 
     return (
-        <div>
-            <h1>{book.title}</h1>
-            <h2>{book.author}</h2>
-            {isCheckedOut ? (
-                <p>Book Checked Out Successfully!</p>
-            ) : (
-                book.available === true && (
-                    <button onClick={handleCheckout}>Check out Book</button>
-                )
-            )}
-            <br />
-            <br />
-            <img src={book.coverimage} alt={`Cover of ${book.title}`} />
-            <p>{book.description}</p>
-            <button>
-                <Link to='/books'>Back to all Books</Link>
-            </button>
+        <div className='single-book-container'>
+            <div className='single-book-content'>
+            <div>
+                    <img className='single-book-cover' src={book.coverimage} alt={`Cover of ${book.title}`} />
+                </div>
+                <div className='single-book-description'>
+                    <h1>{book.title}</h1>
+                    <h2>{book.author}</h2>
+                    {isCheckedOut ? (
+                        <p>Book Checked Out Successfully!</p>
+                    ) : (
+                        book.available === true && (
+                            <button className='single-book-checkout-button' onClick={handleCheckout}>Check out Book</button>
+                        )
+                    )}
+                    <p>{book.description}</p>
+                    <button className='all-books-button'>
+                        <Link to='/books'>Back to all Books</Link>
+                    </button>
+                </div>
+
+            </div>
+
+
+
         </div>
     );
 };
