@@ -211,6 +211,7 @@ nav a {
 
 .homepage-image-container {
   position: relative;
+  margin: 0 auto;
 }
 
 .homepage-image {
