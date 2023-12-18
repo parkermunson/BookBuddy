@@ -10,7 +10,8 @@ const Homepage = () => {
             {user ? <h3 id="welcome-message">Welcome fellow reader!</h3> : null}
         <div className="homepage-image-container">
             
-            <img className="homepage-image" src="src/assets/homepageImg.jpeg" />
+        <img className="homepage-image" src="src/assets/homepageImg.jpeg" alt="Homepage" />
+
 
             <h1 id="tagline">BOOKS YOU PROBABLY SHOULD HAVE READ BY NOW</h1>
             
