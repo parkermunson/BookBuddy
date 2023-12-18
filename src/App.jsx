@@ -9,11 +9,12 @@ import Register from './components/Register'
 import Account from './components/Account'
 import SuccessRegi from './components/SuccessRegi'
 import Homepage from './components/Homepage'
-import BookCarousel from './BookCarousel';
+import Footer from './components/Footer'
+import AboutUs from './components/AboutUs'
 
 
 
-function App({ books }) {
+function App({books}) {
   const [token, setToken] = useState(null)
   const [user, setUser] = useState({})
   const [bookList, setBookList] = useState([])
@@ -57,7 +58,6 @@ return (
   <>
     <h1 id="app-title"><Link to='/'>Classics</Link></h1>
     <Navigations user={user} />
-    <BookCarousel books={books} />
     <Routes>
       <Route path='/' element={<Homepage />} />
       <Route path='/successReg' element={<SuccessRegi />} />
@@ -66,7 +66,9 @@ return (
       <Route path='/login' element={<Login setUser={setUser} setToken={setToken} />} />
       <Route path='/register' element={<Register />} />
       <Route path='/account' element={<Account user={user} setUser={setUser} setToken={setToken} />} />
+      <Route path='/aboutus' element={<AboutUs />} />
     </Routes>
+    <Footer className="footer" user={user} />
 
 
   </>

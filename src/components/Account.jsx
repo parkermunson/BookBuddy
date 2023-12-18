@@ -74,24 +74,27 @@ const Account = ({ user, setUser, setToken }) => {
 
 
     return (
-        <div>
-            <h1>Account</h1>
-            <button onClick={() => { logout() }}>Logout</button>
+        <div className="account-container">
+            <h1 className="my-account">My Account</h1>
             <hr />
-            <h2>Email: {user.email}</h2>
-            <h4>Your Reservations: </h4>
+            <p>Your email is:</p>
+            <h2>{user.email}</h2>
+            <button className="logout-button" onClick={() => { logout() }}>Logout</button>
+            <hr />
+            <h1 className="my-account">Your Reservations: </h1>
             {reservations.length > 0 ? (
             <ul>
                 {reservations.map((book) => (
                     <li key={book.id}>
                         <p>{book.title}</p>
-                        <button onClick={() => handleBookReturn(book.id)}>Return Book</button>
+                        <button className="return-button" onClick={() => handleBookReturn(book.id)}>Return Book</button>
                     </li>
                 ))}
             </ul>
             ) : (
                 <p>Your reservations are empty!</p>
             )}
+            <hr />
 
         </div>
     )
